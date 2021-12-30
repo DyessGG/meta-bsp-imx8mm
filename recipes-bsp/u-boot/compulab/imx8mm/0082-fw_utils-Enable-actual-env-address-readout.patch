@@ -1,11 +1,11 @@
-From c45a4fa08e41dbdbe001cf1151c63bebd328005b Mon Sep 17 00:00:00 2001
+From 540a654fa9c4ca79669ebc830900f48a41873aad Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Thu, 8 Oct 2020 20:38:21 +0300
-Subject: [PATCH 82/91] fw_utils: Enable actual env address readout
+Subject: [PATCH 082/127] fw_utils: Enable actual env address readout
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---
- tools/env/fw_env_main.c    | 66 +++++++++++++++++++++++++++++++++++++-
+ tools/env/fw_env_main.c    | 66 +++++++++++++++++++++++++++++++++++++++++++++-
  tools/env/fw_env_private.h |  1 +
  2 files changed, 66 insertions(+), 1 deletion(-)
 
@@ -127,5 +127,5 @@ index 86be16dabc..9c3b7bf50c 100644
  #ifndef CONFIG_FILE
  #define HAVE_REDUND /* For systems with 2 env sectors */
 -- 
-2.17.1
+2.11.0
 

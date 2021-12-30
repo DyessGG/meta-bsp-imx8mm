@@ -1,7 +1,7 @@
-From 44e574730fd48bf7873eb0643c7b17f08341b7a4 Mon Sep 17 00:00:00 2001
+From e04c8427b6e23d69ec61a9ea63178fa767c8abf7 Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
-Date: Tue, 14 Sep 2021 23:00:09 +0300
-Subject: [PATCH 96/96] readout: some cleannig
+Date: Wed, 8 Dec 2021 17:09:17 +0200
+Subject: [PATCH 095/127] readout: some cleannig
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---
@@ -9,10 +9,10 @@ Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
  1 file changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/arch/arm/mach-imx/imx8m/soc.c b/arch/arm/mach-imx/imx8m/soc.c
-index 3be19181e9..80d8cea198 100644
+index 7915bbbdd2..cfa2b7871f 100644
 --- a/arch/arm/mach-imx/imx8m/soc.c
 +++ b/arch/arm/mach-imx/imx8m/soc.c
-@@ -185,16 +185,13 @@ void enable_caches(void)
+@@ -193,16 +193,13 @@ void enable_caches(void)
  	int entry = imx8m_find_dram_entry_in_mem_map();
  	u64 attrs = imx8m_mem_map[entry].attrs;
  
@@ -25,7 +25,7 @@ index 3be19181e9..80d8cea198 100644
  		imx8m_mem_map[entry].virt = gd->bd->bi_dram[i].start;
  		imx8m_mem_map[entry].size = gd->bd->bi_dram[i].size;
  		imx8m_mem_map[entry].attrs = attrs;
--		printf("Added memory mapping (%d): %llx %llx\n", entry,
+-		debug("Added memory mapping (%d): %llx %llx\n", entry,
 -		      imx8m_mem_map[entry].phys, imx8m_mem_map[entry].size);
  		i++; entry++;
  	}

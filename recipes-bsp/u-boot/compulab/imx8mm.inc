@@ -91,15 +91,39 @@ SRC_URI_append = " \
 	file://0090-cpl-imx8m-mini-Enable-startek-ili9881c-panel-support.patch \
 	file://0091-cm-imx8m-mini-config-Enable-startek-ili9881c.patch \
 	file://0092-Migration-to-5.10.35.patch \
-	file://0093-Fix-enable_cache.patch \
-	file://0094-Fix-mmc_autodetect.patch \
-	file://0095-config-Enable-video.patch \
-	file://0096-readout-some-cleannig.patch \
-	file://0097-mmc-Fix-mmc_switch-workflow-issue.patch \
-	file://0098-defconfig-Break-down-to-common-and-specific-parts.patch \
-	file://0099-spl-lpddr-training-size-optimisation.patch \
-	file://0100-spl-Add-SDP-support.patch \
-	file://0101-spl-Enable-Samsung-4G-DRAM-0x01061010.patch \
-	file://0102-Enable-DDR-Alliance-1G-0x01050008.patch \
-	file://0103-make-Add-wrapper-for-compound-config.patch \
+	file://0093-Fix-mmc_autodetect.patch \
+	file://0094-config-Enable-video.patch \
+	file://0095-readout-some-cleannig.patch \
+	file://0096-mmc-Fix-mmc_switch-workflow-issue.patch \
+	file://0097-defconfig-Break-down-to-common-and-specific-parts.patch \
+	file://0098-spl-lpddr-training-size-optimisation.patch \
+	file://0099-spl-Add-SDP-support.patch \
+	file://0100-spl-Enable-Samsung-4G-DRAM-0x01061010.patch \
+	file://0101-Enable-DDR-Alliance-1G-0x01050008.patch \
+	file://0102-make-Add-wrapper-for-compound-config.patch \
+	file://0103-Revert-legacy-changes.patch
+	file://0104-compulab-imx8mm-Add-binman-support.patch
+	file://0105-defconfig-Enable-EFI_LOADER.patch
+	file://0106-core-Add-EPFNOSUPPORT-handeler.patch
+	file://0107-cpl-imx8m-mini-dts-remove-unrelevant-sections.patch
+	file://0108-iot-gate-imx8-remove-driver-reset-functions.patch
+	file://0109-iot-gate-imx8-dts-set-MMC1-voltage-to-1.8V.patch
+	file://0110-iot-gate-imx8-usb-VBUS-enable-fix.patch
+	file://0111-imx8mm-enable-global-functions-implementation-in-sub.patch
+	file://0112-iot-gate-imx8-RS485-232-selection.patch
+	file://0113-iot-gate-imx8-add-extension-board-support.patch
+	file://0114-iot-gate-imx8-update-boot-sequence.patch
+	file://0115-iot-gate-imx8-prevent-network-interfaces-rename.patch
+	file://0116-iot-gate-imx8-update-prompt.patch
+	file://0117-imx8mm-enable-prompt-update-in-sub-projects.patch
+	file://0118-iot-gate-imx8-hide-temperature-message.patch
+	file://0119-iot-gate-imx8-fix-UART1-mode-GPIO.patch
+	file://0120-iot-gate-imx8-add-support-for-the-IE-TPM-module.patch
+	file://0121-iot-gate-imx8-add-support-for-the-IE-POE-extension-b.patch
+	file://0122-iot-gate-imx8-update-support-for-the-IE-TPM-module.patch
+	file://0123-iot-gate-imx8-add-support-for-the-IE-CL420-module.patch
+	file://0124-iot-gate-imx8-add-support-for-the-POEv2-module.patch
+	file://0125-iot-gate-imx8-enable-USB-to-Ethernet-driver-SMSC-LAN.patch
+	file://0126-cmd-eeprom-fix-disregarding-of-the-i2c_bus-parameter.patch
+	file://0127-iot-gate-imx8-release-2020.04-iot-gate-imx8-3.0.patch
 "

@@ -1,7 +1,7 @@
-From 132104a16c3551acf9638770d6c0be946b8b61d1 Mon Sep 17 00:00:00 2001
+From 343c29e889ff950a1e869ef4fd9586668f626fd2 Mon Sep 17 00:00:00 2001
 From: Valentin Raevsky <valentin@compulab.co.il>
 Date: Fri, 17 Jul 2020 18:59:22 +0300
-Subject: [PATCH 62/91] imx8: eeprom: Move to the imx8 platform independent
+Subject: [PATCH 062/127] imx8: eeprom: Move to the imx8 platform independent
  folder
 
 Move the eeprom code the imx8 platform independent folder.
@@ -15,15 +15,15 @@ Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
  board/compulab/plat/{imx8mm => imx8}/eeprom/Makefile     | 0
  board/compulab/plat/{imx8mm => imx8}/eeprom/eeprom.c     | 0
  board/compulab/plat/{imx8mm => imx8}/eeprom/eeprom.h     | 0
- board/compulab/plat/{imx8mm => imx8}/eeprom/eeprom_spl.c | 0
+ board/compulab/plat/{imx8mm => imx8}/eeprom/eeprom_spl.c | 1 +
  board/compulab/plat/imx8mm/Makefile                      | 1 -
  board/compulab/ucm-imx8m-mini/Makefile                   | 2 ++
- 9 files changed, 7 insertions(+), 1 deletion(-)
+ 9 files changed, 8 insertions(+), 1 deletion(-)
  create mode 100644 board/compulab/plat/imx8/Makefile
  rename board/compulab/plat/{imx8mm => imx8}/eeprom/Makefile (100%)
  rename board/compulab/plat/{imx8mm => imx8}/eeprom/eeprom.c (100%)
  rename board/compulab/plat/{imx8mm => imx8}/eeprom/eeprom.h (100%)
- rename board/compulab/plat/{imx8mm => imx8}/eeprom/eeprom_spl.c (100%)
+ rename board/compulab/plat/{imx8mm => imx8}/eeprom/eeprom_spl.c (99%)
 
 diff --git a/board/compulab/iot-gate-imx8/Makefile b/board/compulab/iot-gate-imx8/Makefile
 index af743b977b..e5239d1dbb 100644
@@ -79,9 +79,20 @@ similarity index 100%
 rename from board/compulab/plat/imx8mm/eeprom/eeprom.h
 rename to board/compulab/plat/imx8/eeprom/eeprom.h
 diff --git a/board/compulab/plat/imx8mm/eeprom/eeprom_spl.c b/board/compulab/plat/imx8/eeprom/eeprom_spl.c
-similarity index 100%
+similarity index 99%
 rename from board/compulab/plat/imx8mm/eeprom/eeprom_spl.c
 rename to board/compulab/plat/imx8/eeprom/eeprom_spl.c
+index 09a04fda92..f25493b1ee 100644
+--- a/board/compulab/plat/imx8mm/eeprom/eeprom_spl.c
++++ b/board/compulab/plat/imx8/eeprom/eeprom_spl.c
+@@ -7,6 +7,7 @@
+ #include <common.h>
+ #include <i2c.h>
+ #include <linux/kernel.h>
++#include <linux/delay.h>
+ #include <asm/arch/imx8mq_pins.h>
+ #include <asm/mach-imx/gpio.h>
+ #include <asm-generic/gpio.h>
 diff --git a/board/compulab/plat/imx8mm/Makefile b/board/compulab/plat/imx8mm/Makefile
 index 2f68e0523e..33b3fedef9 100644
 --- a/board/compulab/plat/imx8mm/Makefile
@@ -108,5 +119,5 @@ index dbde2116cd..870792441c 100644
  obj-y += ../plat/imx8mm/
 +obj-y += ../plat/imx8/
 -- 
-2.17.1
+2.11.0
 

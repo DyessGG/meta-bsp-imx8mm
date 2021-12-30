@@ -1,7 +1,7 @@
-From af8945a574d2cfde0e05192da479c0c9d501d788 Mon Sep 17 00:00:00 2001
+From a029def3c6bebe57f5d08af4103cd9e6ecd8186a Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Tue, 3 Nov 2020 22:20:00 +0200
-Subject: [PATCH 84/91] fdt: Add export SoM data via FDT
+Subject: [PATCH 084/127] fdt: Add export SoM data via FDT
 
 Export via FDT the following data:
 	board options
@@ -11,9 +11,9 @@ Export via FDT the following data:
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---
- board/compulab/common/eeprom.c           | 40 +++++++++++++++++-------
- board/compulab/common/eeprom.h           | 22 +++++++++++++
- board/compulab/plat/imx8mm/board/board.c | 28 +++++++++++++++++
+ board/compulab/common/eeprom.c           | 40 +++++++++++++++++++++++---------
+ board/compulab/common/eeprom.h           | 22 ++++++++++++++++++
+ board/compulab/plat/imx8mm/board/board.c | 28 ++++++++++++++++++++++
  3 files changed, 79 insertions(+), 11 deletions(-)
 
 diff --git a/board/compulab/common/eeprom.c b/board/compulab/common/eeprom.c
@@ -127,7 +127,7 @@ index d366f59288..dd7d82d855 100644
  
  #endif
 diff --git a/board/compulab/plat/imx8mm/board/board.c b/board/compulab/plat/imx8mm/board/board.c
-index 0caa4dc1b8..0801844bfe 100644
+index 86a62129e7..5dff4b8bed 100644
 --- a/board/compulab/plat/imx8mm/board/board.c
 +++ b/board/compulab/plat/imx8mm/board/board.c
 @@ -26,6 +26,7 @@
@@ -137,8 +137,8 @@ index 0caa4dc1b8..0801844bfe 100644
 +#include <asm/setup.h>
  #include <asm/mach-imx/boot_mode.h>
  #include <asm/mach-imx/video.h>
- #include "ddr/ddr.h"
-@@ -86,6 +87,32 @@ int dram_init(void)
+ #include <linux/delay.h>
+@@ -87,6 +88,32 @@ int dram_init(void)
  }
  
  #ifdef CONFIG_OF_BOARD_SETUP
@@ -171,7 +171,7 @@ index 0caa4dc1b8..0801844bfe 100644
  static int fdt_set_env_addr(void *blob, bd_t *bd)
  {
  	char tmp[32];
-@@ -110,6 +137,7 @@ static int fdt_set_env_addr(void *blob, bd_t *bd)
+@@ -111,6 +138,7 @@ static int fdt_set_env_addr(void *blob, bd_t *bd)
  int ft_board_setup(void *blob, bd_t *bd)
  {
  	fdt_set_env_addr(blob, bd);
@@ -180,5 +180,5 @@ index 0caa4dc1b8..0801844bfe 100644
  }
  #endif
 -- 
-2.17.1
+2.11.0
 

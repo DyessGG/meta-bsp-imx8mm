@@ -1,7 +1,7 @@
-From 4188f41f6084169285683de11d4365bc6be1163d Mon Sep 17 00:00:00 2001
+From 2090b5bfc42438bcb2473caff1de87951f86d782 Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Tue, 14 Sep 2021 22:44:44 +0300
-Subject: [PATCH 95/96] config: Enable video
+Subject: [PATCH 094/127] config: Enable video
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---

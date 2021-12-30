@@ -1,12 +1,12 @@
-From 6d0611fe5ce5a57be217e7c00432cfe75af085e4 Mon Sep 17 00:00:00 2001
+From 82f3cbc08eb5135902c38b69c5bb00784609731c Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Wed, 18 Nov 2020 22:10:58 +0200
-Subject: [PATCH 86/91] rtc: Disable bus when powered from battery
+Subject: [PATCH 086/127] rtc: Disable bus when powered from battery
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---
- board/compulab/common/rtc.h              | 20 +++++++++++++++++
- board/compulab/plat/imx8mm/board/board.c | 28 ++++++++++++++++++++++++
+ board/compulab/common/rtc.h              | 20 ++++++++++++++++++++
+ board/compulab/plat/imx8mm/board/board.c | 28 ++++++++++++++++++++++++++++
  2 files changed, 48 insertions(+)
  create mode 100644 board/compulab/common/rtc.h
 
@@ -37,18 +37,18 @@ index 0000000000..b5927a86f4
 +#endif //_RTC_H_
 +
 diff --git a/board/compulab/plat/imx8mm/board/board.c b/board/compulab/plat/imx8mm/board/board.c
-index 8d7963f2a5..405b681e4d 100644
+index c0cbe1c5a8..388dbd1d54 100644
 --- a/board/compulab/plat/imx8mm/board/board.c
 +++ b/board/compulab/plat/imx8mm/board/board.c
-@@ -31,6 +31,7 @@
- #include <asm/mach-imx/video.h>
+@@ -32,6 +32,7 @@
+ #include <linux/delay.h>
  #include "ddr/ddr.h"
  #include "common/eeprom.h"
 +#include "common/rtc.h"
  
  DECLARE_GLOBAL_DATA_PTR;
  
-@@ -257,9 +258,36 @@ static void show_suite_info(void)
+@@ -258,9 +259,36 @@ static void show_suite_info(void)
  	return;
  }
  
@@ -86,5 +86,5 @@ index 8d7963f2a5..405b681e4d 100644
  	setup_fec();
  #endif
 -- 
-2.17.1
+2.11.0
 

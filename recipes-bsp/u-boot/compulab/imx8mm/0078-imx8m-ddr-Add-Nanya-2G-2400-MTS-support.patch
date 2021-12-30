@@ -1,36 +1,36 @@
-From 768da5b092f0b1b990b0d10c2f135fe0fde45454 Mon Sep 17 00:00:00 2001
+From c366f3b82f5e59de6bdfa2fa3eeb0e6bd0cef9ae Mon Sep 17 00:00:00 2001
 From: Valentin Raevsky <valentin@compulab.co.il>
 Date: Sun, 30 Aug 2020 10:44:03 +0300
-Subject: [PATCH 78/91] imx8m: ddr: Add Nanya 2G 2400 MTS support
+Subject: [PATCH 078/127] imx8m: ddr: Add Nanya 2G 2400 MTS support
 
 Add Nanya 2G 2400 MTS support.
 Addresses the dram issue discovered on this dram configuration.
 
 Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
 ---
- board/compulab/plat/imx8mm/ddr/Makefile       |    3 +
- board/compulab/plat/imx8mm/ddr/ddr.c          |    4 +
- board/compulab/plat/imx8mm/ddr/ddr.h          |    1 +
- .../plat/imx8mm/ddr/lpddr4_timing_05000010.c  | 1849 +++++++++++++++++
+ board/compulab/plat/imx8mm/ddr/Makefile            |    3 +
+ board/compulab/plat/imx8mm/ddr/ddr.c               |    4 +
+ board/compulab/plat/imx8mm/ddr/ddr.h               |    1 +
+ .../plat/imx8mm/ddr/lpddr4_timing_05000010.c       | 1849 ++++++++++++++++++++
  4 files changed, 1857 insertions(+)
  create mode 100644 board/compulab/plat/imx8mm/ddr/lpddr4_timing_05000010.c
 
 diff --git a/board/compulab/plat/imx8mm/ddr/Makefile b/board/compulab/plat/imx8mm/ddr/Makefile
-index bf8a968277..be4a6abd7a 100644
+index 47c48dbae2..daf9c67950 100644
 --- a/board/compulab/plat/imx8mm/ddr/Makefile
 +++ b/board/compulab/plat/imx8mm/ddr/Makefile
-@@ -3,3 +3,6 @@ obj-y += lpddr4_timing_ff020008.o
- obj-y += lpddr4_timing_ff000110.o
- obj-y += lpddr4_timing_01061010.o
- obj-y += lpddr4_timing_01050008.o
-+ifndef CONFIG_TARGET_MCM_IMX8M_MINI
-+obj-y += lpddr4_timing_05000010.o
-+endif
+@@ -3,3 +3,6 @@
+ +obj-y += lpddr4_timing_ff000110.o
+ +obj-y += lpddr4_timing_01061010.o
+ +obj-y += lpddr4_timing_01050008.o
+++ifndef CONFIG_TARGET_MCM_IMX8M_MINI
+++obj-y += lpddr4_timing_05000010.o
+++endif
 diff --git a/board/compulab/plat/imx8mm/ddr/ddr.c b/board/compulab/plat/imx8mm/ddr/ddr.c
-index cf47c758b4..bea5f7c3dc 100644
+index 970d3ab81b..8a7d221b97 100644
 --- a/board/compulab/plat/imx8mm/ddr/ddr.c
 +++ b/board/compulab/plat/imx8mm/ddr/ddr.c
-@@ -69,7 +69,11 @@ struct lpddr4_desc {
+@@ -70,7 +70,11 @@ struct lpddr4_desc {
  
  #define DEFAULT (('D' << 24) + ('E' << 16 ) + ( 'F' << 8 ) + 'A')
  static const struct lpddr4_desc lpddr4_array[] = {
@@ -1910,5 +1910,5 @@ index 0000000000..5b091de47b
 +};
 +
 -- 
-2.17.1
+2.11.0
 

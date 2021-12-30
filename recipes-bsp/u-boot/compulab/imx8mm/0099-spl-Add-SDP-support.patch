@@ -1,7 +1,7 @@
-From 49f257680b38cffdb2cb7cb99ace271328d4e366 Mon Sep 17 00:00:00 2001
+From dc24c2514c398359918ab6225e961e7d6eb8ced3 Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Sun, 17 Oct 2021 21:23:39 +0300
-Subject: [PATCH 100/100] spl: Add SDP support
+Subject: [PATCH 099/127] spl: Add SDP support
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---
@@ -11,10 +11,10 @@ Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
  3 files changed, 27 insertions(+), 4 deletions(-)
 
 diff --git a/board/compulab/plat/imx8mm/spl/spl.c b/board/compulab/plat/imx8mm/spl/spl.c
-index 7786f6616a..04a31da5e7 100644
+index c82d59ab1e..03783d1e8b 100644
 --- a/board/compulab/plat/imx8mm/spl/spl.c
 +++ b/board/compulab/plat/imx8mm/spl/spl.c
-@@ -20,10 +20,23 @@
+@@ -22,10 +22,23 @@
  #include <asm/mach-imx/mxc_i2c.h>
  #include <fsl_esdhc_imx.h>
  #include <mmc.h>
@@ -38,7 +38,7 @@ index 7786f6616a..04a31da5e7 100644
  int spl_board_boot_device(enum boot_device boot_dev_spl)
  {
  	switch (boot_dev_spl) {
-@@ -33,6 +46,9 @@ int spl_board_boot_device(enum boot_device boot_dev_spl)
+@@ -35,6 +48,9 @@ int spl_board_boot_device(enum boot_device boot_dev_spl)
  	case SD3_BOOT:
  	case MMC3_BOOT:
  		return BOOT_DEVICE_MMC2;
@@ -107,5 +107,5 @@ index a65d86e253..9ef84842d0 100644
  					   "booti ${loadaddr} ${initrd_addr} ${fdt_addr};"\
  					"else echo \"Run fastboot ...\"; fastboot 0; fi\0" \
 -- 
-2.17.1
+2.11.0
 

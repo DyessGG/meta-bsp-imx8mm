@@ -1,7 +1,7 @@
-From cbfd55c8467cbd289b510eae889f89757d4229f0 Mon Sep 17 00:00:00 2001
+From f1bc45f99937df14cdd7ae85ce380aaabe1aaf38 Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Wed, 22 Dec 2021 16:58:13 +0200
-Subject: [PATCH 103/103] make: Add wrapper for compound config
+Subject: [PATCH 102/127] make: Add wrapper for compound config
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---

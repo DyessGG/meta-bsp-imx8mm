@@ -1,20 +1,20 @@
-From 05a8db30c2c72c80f1d56bef9086ab5ece690c59 Mon Sep 17 00:00:00 2001
+From f19d3142b3eafc59d4dfc2f212dc161ed2ae0337 Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Mon, 19 Jul 2021 15:52:47 +0300
-Subject: [PATCH 59/91] iot-gate-imx8: Add basic support
+Subject: [PATCH 059/127] iot-gate-imx8: Add basic support
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---
  arch/arm/dts/Makefile                        |   1 +
- arch/arm/dts/iot-gate-imx8.dts               |  49 ++++
+ arch/arm/dts/iot-gate-imx8.dts               |  49 +++++
  arch/arm/mach-imx/imx8m/Kconfig              |   7 +
  board/compulab/iot-gate-imx8/Kconfig         |  17 ++
  board/compulab/iot-gate-imx8/Makefile        |  15 ++
- board/compulab/iot-gate-imx8/iot-gate-imx8.c | 265 +++++++++++++++++++
- board/compulab/iot-gate-imx8/spl.c           |   9 +
- configs/iot-gate-imx8_defconfig              | 102 +++++++
+ board/compulab/iot-gate-imx8/iot-gate-imx8.c | 265 +++++++++++++++++++++++++++
+ board/compulab/iot-gate-imx8/spl.c           |   8 +
+ configs/iot-gate-imx8_defconfig              | 102 +++++++++++
  include/configs/iot-gate-imx8.h              |  15 ++
- 9 files changed, 480 insertions(+)
+ 9 files changed, 479 insertions(+)
  create mode 100644 arch/arm/dts/iot-gate-imx8.dts
  create mode 100644 board/compulab/iot-gate-imx8/Kconfig
  create mode 100644 board/compulab/iot-gate-imx8/Makefile
@@ -24,10 +24,10 @@ Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
  create mode 100644 include/configs/iot-gate-imx8.h
 
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index 5dacac3b5a..42e79cd78c 100644
+index c6b54163d0..1fc99ed1c9 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
-@@ -882,6 +882,7 @@ dtb-$(CONFIG_ARCH_IMXRT) += imxrt1050-evk.dtb \
+@@ -890,6 +890,7 @@ dtb-$(CONFIG_ARCH_IMX8ULP) += imx8ulp-evk.dtb imx8ulp-evk-i3c.dtb
  
  dtb-$(CONFIG_TARGET_UCM_IMX8M_MINI) += ucm-imx8m-mini.dtb
  dtb-$(CONFIG_TARGET_MCM_IMX8M_MINI) += mcm-imx8m-mini.dtb
@@ -91,10 +91,10 @@ index 0000000000..6b6b2d69c7
 +	};
 +};
 diff --git a/arch/arm/mach-imx/imx8m/Kconfig b/arch/arm/mach-imx/imx8m/Kconfig
-index 13e93cf0f1..1664a9c1d0 100644
+index a38ec31d25..3102155bc1 100644
 --- a/arch/arm/mach-imx/imx8m/Kconfig
 +++ b/arch/arm/mach-imx/imx8m/Kconfig
-@@ -214,6 +214,12 @@ config TARGET_MCM_IMX8M_MINI
+@@ -272,6 +272,12 @@ config TARGET_MCM_IMX8M_MINI
  	select SUPPORT_SPL
  	select IMX8M_LPDDR4
  
@@ -107,7 +107,7 @@ index 13e93cf0f1..1664a9c1d0 100644
  endchoice
  
  source "board/freescale/imx8mq_evk/Kconfig"
-@@ -232,5 +238,6 @@ source "board/phytec/phycore_imx8mm/Kconfig"
+@@ -291,5 +297,6 @@ source "board/phytec/phycore_imx8mm/Kconfig"
  source "board/phytec/phycore_imx8mp/Kconfig"
  source "board/compulab/ucm-imx8m-mini/Kconfig"
  source "board/compulab/mcm-imx8m-mini/Kconfig"
@@ -431,15 +431,14 @@ index 0000000000..d01b8f8767
 +#endif /*CONFIG_FSL_FASTBOOT*/
 diff --git a/board/compulab/iot-gate-imx8/spl.c b/board/compulab/iot-gate-imx8/spl.c
 new file mode 100644
-index 0000000000..d6ece8ef3e
+index 0000000000..6488770333
 --- /dev/null
 +++ b/board/compulab/iot-gate-imx8/spl.c
-@@ -0,0 +1,9 @@
+@@ -0,0 +1,8 @@
 +#include <asm/io.h>
 +#include <asm/mach-imx/iomux-v3.h>
 +#include <asm/arch/imx8mm_pins.h>
 +#include <asm/arch/clock.h>
-+#include <asm/arch/sys_proto.h>
 +
 +int spl_board_private_init(void) {
 +	return 0;
@@ -574,5 +573,5 @@ index 0000000000..b3d6082a66
 +#endif
 +#endif
 -- 
-2.17.1
+2.11.0
 

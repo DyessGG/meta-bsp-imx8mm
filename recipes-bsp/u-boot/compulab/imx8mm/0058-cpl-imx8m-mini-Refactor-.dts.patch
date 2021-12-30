@@ -1,13 +1,13 @@
-From a9b3a9c95226e778b34815bea7543ee90a4c2caf Mon Sep 17 00:00:00 2001
+From 6ace4c3bfd1318e984a4b869be9b5cd679ba44ad Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Mon, 19 Jul 2021 15:48:15 +0300
-Subject: [PATCH 58/91] cpl-imx8m-mini: Refactor .dts
+Subject: [PATCH 058/127] cpl-imx8m-mini: Refactor .dts
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---
- arch/arm/dts/cpl-imx8m-mini.dtsi | 472 +++++++++++++++++++++++++++++++
- arch/arm/dts/mcm-imx8m-mini.dts  | 457 +-----------------------------
- arch/arm/dts/ucm-imx8m-mini.dts  | 457 +-----------------------------
+ arch/arm/dts/cpl-imx8m-mini.dtsi | 472 +++++++++++++++++++++++++++++++++++++++
+ arch/arm/dts/mcm-imx8m-mini.dts  | 457 +------------------------------------
+ arch/arm/dts/ucm-imx8m-mini.dts  | 457 +------------------------------------
  3 files changed, 474 insertions(+), 912 deletions(-)
  create mode 100644 arch/arm/dts/cpl-imx8m-mini.dtsi
 
@@ -1430,5 +1430,5 @@ index f2794e74e9..7b81e8a75b 100644
 -	temperature = <115000>;
  };
 -- 
-2.17.1
+2.11.0
 

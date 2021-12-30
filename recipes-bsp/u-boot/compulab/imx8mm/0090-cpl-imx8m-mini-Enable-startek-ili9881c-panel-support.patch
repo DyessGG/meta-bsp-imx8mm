@@ -1,13 +1,13 @@
-From d8f1eaa1b7b0a57bd3745c4948400d419aa70a32 Mon Sep 17 00:00:00 2001
+From 4ee2ae20633f9092d94146d40fac302b8147febf Mon Sep 17 00:00:00 2001
 From: Valentin Raevsky <valentin@compulab.co.il>
 Date: Wed, 24 Feb 2021 15:02:17 +0200
-Subject: [PATCH 90/91] cpl-imx8m-mini: Enable startek-ili9881c panel support
+Subject: [PATCH 090/127] cpl-imx8m-mini: Enable startek-ili9881c panel support
 
 Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
 ---
- arch/arm/dts/cpl-imx8m-mini.dtsi         | 57 ++++++++++++++++++++++++
- board/compulab/plat/imx8mm/board/board.c |  8 ++++
- include/configs/cpl-imx8m-mini.h         |  7 +--
+ arch/arm/dts/cpl-imx8m-mini.dtsi         | 57 ++++++++++++++++++++++++++++++++
+ board/compulab/plat/imx8mm/board/board.c |  8 +++++
+ include/configs/cpl-imx8m-mini.h         |  7 ++--
  3 files changed, 69 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm/dts/cpl-imx8m-mini.dtsi b/arch/arm/dts/cpl-imx8m-mini.dtsi
@@ -97,10 +97,10 @@ index c37ad9c71d..98cdae0d22 100644
 +	/delete-property/ assigned-clock-rates;
 +};
 diff --git a/board/compulab/plat/imx8mm/board/board.c b/board/compulab/plat/imx8mm/board/board.c
-index 13bb161e51..a60351b77e 100644
+index 568c9779b6..4e4be38ca7 100644
 --- a/board/compulab/plat/imx8mm/board/board.c
 +++ b/board/compulab/plat/imx8mm/board/board.c
-@@ -296,6 +296,11 @@ static void disable_rtc_bus_on_battery(void)
+@@ -297,6 +297,11 @@ static void disable_rtc_bus_on_battery(void)
  	return;
  }
  
@@ -112,7 +112,7 @@ index 13bb161e51..a60351b77e 100644
  int board_init(void)
  {
  
-@@ -311,6 +316,9 @@ int board_init(void)
+@@ -312,6 +317,9 @@ int board_init(void)
  	if (IS_ENABLED(CONFIG_LED))
  		led_default_state();
  
@@ -156,5 +156,5 @@ index dd8120f4dc..d0252592f5 100644
  
  #define CONFIG_BOARD_POSTCLK_INIT
 -- 
-2.17.1
+2.11.0
 

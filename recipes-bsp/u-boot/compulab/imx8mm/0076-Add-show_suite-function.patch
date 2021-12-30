@@ -1,16 +1,16 @@
-From 3b02cb5cedc1ecaf1447f77faca970847e1f3388 Mon Sep 17 00:00:00 2001
+From 5386a86ded5d6b55851e9f9b35f59682a90f59cd Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Sat, 29 Aug 2020 22:14:48 +0300
-Subject: [PATCH 76/91] Add show_suite function
+Subject: [PATCH 076/127] Add show_suite function
 
 The function shows product names of UCM and SB on boot.
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---
  arch/arm/dts/cpl-imx8m-mini.dtsi         |  2 +-
- board/compulab/common/eeprom.c           | 88 ++++++++++++++++++------
+ board/compulab/common/eeprom.c           | 88 ++++++++++++++++++++++++--------
  board/compulab/common/eeprom.h           |  1 +
- board/compulab/plat/imx8mm/board/board.c | 17 +++++
+ board/compulab/plat/imx8mm/board/board.c | 17 ++++++
  4 files changed, 87 insertions(+), 21 deletions(-)
 
 diff --git a/arch/arm/dts/cpl-imx8m-mini.dtsi b/arch/arm/dts/cpl-imx8m-mini.dtsi
@@ -237,10 +237,10 @@ index 09804ee146..d366f59288 100644
  static inline int cl_eeprom_read_mac_addr(uchar *buf, uint eeprom_bus)
  {
 diff --git a/board/compulab/plat/imx8mm/board/board.c b/board/compulab/plat/imx8mm/board/board.c
-index a753042d91..580322d7a7 100644
+index 3e90405354..049a9cee42 100644
 --- a/board/compulab/plat/imx8mm/board/board.c
 +++ b/board/compulab/plat/imx8mm/board/board.c
-@@ -187,6 +187,22 @@ __weak int uboot_board_private_init(void) {
+@@ -188,6 +188,22 @@ __weak int uboot_board_private_init(void) {
  	return 0;
  }
  
@@ -263,7 +263,7 @@ index a753042d91..580322d7a7 100644
  int board_init(void)
  {
  
-@@ -197,6 +213,7 @@ int board_init(void)
+@@ -198,6 +214,7 @@ int board_init(void)
  		printf("uboot_board_private_init() failed\n");
  		hang();
  	}
@@ -272,5 +272,5 @@ index a753042d91..580322d7a7 100644
  }
  
 -- 
-2.17.1
+2.11.0
 

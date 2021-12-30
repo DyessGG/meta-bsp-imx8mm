@@ -1,7 +1,7 @@
-From e6b1432e42c06a2a1200731f91e0be99b70c01cc Mon Sep 17 00:00:00 2001
+From 096b7bed9da216bb278dc88ed03f623247a535f8 Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Sun, 3 Oct 2021 01:41:43 +0300
-Subject: [PATCH 97/97] mmc: Fix mmc_switch workflow issue
+Subject: [PATCH 096/127] mmc: Fix mmc_switch workflow issue
 
 Revert the patch 9a461acedebe664cf1e557c3b9ec983e6b04e805, that introduces
 premature falling back on a long timeout instead of continuation of the

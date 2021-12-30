@@ -1,19 +1,19 @@
-From 35fad7ed9ddc6485f999fde180a39d81135c18e4 Mon Sep 17 00:00:00 2001
+From b75b723d5a5821459ee487bd9cf62a88b00ee7f2 Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Mon, 19 Jul 2021 01:13:04 +0300
-Subject: [PATCH 55/91] ucm-imx8m-mini: Refactor the code for 2020.04
+Subject: [PATCH 055/127] ucm-imx8m-mini: Refactor the code for 2020.04
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---
- arch/arm/dts/ucm-imx8m-mini.dts               |  30 +-
- board/compulab/ucm-imx8m-mini/Kconfig         |  25 +-
- board/compulab/ucm-imx8m-mini/Makefile        |   5 +-
- board/compulab/ucm-imx8m-mini/spl.c           | 246 +------
- .../compulab/ucm-imx8m-mini/ucm-imx8m-mini.c  | 692 +-----------------
- .../compulab/ucm-imx8m-mini/ucm-imx8m-mini.h  |  18 -
- configs/ucm-imx8m-mini_defconfig              |  88 ++-
- include/configs/ucm-imx8m-mini.h              |  76 +-
- 8 files changed, 126 insertions(+), 1054 deletions(-)
+ arch/arm/dts/ucm-imx8m-mini.dts                |  30 +-
+ board/compulab/ucm-imx8m-mini/Kconfig          |  25 +-
+ board/compulab/ucm-imx8m-mini/Makefile         |   5 +-
+ board/compulab/ucm-imx8m-mini/spl.c            | 249 +--------
+ board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.c | 692 ++-----------------------
+ board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.h |  18 -
+ configs/ucm-imx8m-mini_defconfig               |  88 ++--
+ include/configs/ucm-imx8m-mini.h               |  76 +--
+ 8 files changed, 127 insertions(+), 1056 deletions(-)
  delete mode 100644 board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.h
 
 diff --git a/arch/arm/dts/ucm-imx8m-mini.dts b/arch/arm/dts/ucm-imx8m-mini.dts
@@ -86,7 +86,7 @@ index b191e87755..f2794e74e9 100644
  
  &cpu_alert0 {
 diff --git a/board/compulab/ucm-imx8m-mini/Kconfig b/board/compulab/ucm-imx8m-mini/Kconfig
-index d687db7686..ed4f21608a 100644
+index d93df9063c..ed4f21608a 100644
 --- a/board/compulab/ucm-imx8m-mini/Kconfig
 +++ b/board/compulab/ucm-imx8m-mini/Kconfig
 @@ -9,26 +9,9 @@ config SYS_VENDOR
@@ -111,7 +111,7 @@ index d687db7686..ed4f21608a 100644
 -config RAM_2G
 -	bool "RAM_2G"
 -	help
--	 This option configures 2G RAM only
+-	 imx8mm_val board configuration approach
 -
 -config RAM_4G
 -	bool "RAM_4G"
@@ -140,10 +140,10 @@ index f30d5e645a..dbde2116cd 100644
  
  obj-y += ../plat/imx8mm/
 diff --git a/board/compulab/ucm-imx8m-mini/spl.c b/board/compulab/ucm-imx8m-mini/spl.c
-index 316e8100fc..d6ece8ef3e 100644
+index fa1943477e..b73f8ade6d 100644
 --- a/board/compulab/ucm-imx8m-mini/spl.c
 +++ b/board/compulab/ucm-imx8m-mini/spl.c
-@@ -1,251 +1,9 @@
+@@ -1,252 +1,9 @@
 -/*
 - * Copyright 2018 NXP
 - *
@@ -165,6 +165,7 @@ index 316e8100fc..d6ece8ef3e 100644
 -#include <asm/mach-imx/mxc_i2c.h>
 -#include <fsl_esdhc.h>
 -#include <mmc.h>
+-
 -#include <asm/arch/ddr.h>
 -#include "ddr/ddr.h"
 -#include "ucm-imx8m-mini.h"
@@ -357,8 +358,9 @@ index 316e8100fc..d6ece8ef3e 100644
 -{
 -	/* Just empty function now - can't decide what to choose */
 -	debug("%s: %s\n", __func__, name);
+-
 +#include <asm/arch/sys_proto.h>
- 
++ 
 +int spl_board_private_init(void) {
  	return 0;
  }
@@ -398,7 +400,7 @@ index 316e8100fc..d6ece8ef3e 100644
 -	board_init_r(NULL, 0);
 -}
 diff --git a/board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.c b/board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.c
-index 0ffbbf3615..dea292e75c 100644
+index 8694201633..cfb4831a80 100644
 --- a/board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.c
 +++ b/board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.c
 @@ -1,5 +1,5 @@
@@ -1208,7 +1210,7 @@ index c3380cb5ef..0000000000
 -
 -#endif
 diff --git a/configs/ucm-imx8m-mini_defconfig b/configs/ucm-imx8m-mini_defconfig
-index f42597b5c7..1bdf48190e 100644
+index 3eb63bf1e6..77b68b8e49 100644
 --- a/configs/ucm-imx8m-mini_defconfig
 +++ b/configs/ucm-imx8m-mini_defconfig
 @@ -1,75 +1,101 @@
@@ -1234,12 +1236,12 @@ index f42597b5c7..1bdf48190e 100644
 +CONFIG_SPL_TEXT_BASE=0x7E1000
  CONFIG_FIT=y
 +CONFIG_FIT_EXTERNAL_OFFSET=0x3000
- CONFIG_SPL_LOAD_FIT=y
  CONFIG_SPL_FIT_GENERATOR="arch/arm/mach-imx/mkimage_fit_atf.sh"
 -CONFIG_SYS_EXTRA_OPTIONS="IMX_CONFIG=arch/arm/mach-imx/imx8m/imximage.cfg,SPL_TEXT_BASE=0x7E1000"
 +CONFIG_OF_SYSTEM_SETUP=y
 +CONFIG_SYS_EXTRA_OPTIONS="IMX_CONFIG=arch/arm/mach-imx/imx8m/imximage-8mm-lpddr4.cfg"
 +CONFIG_CONSOLE_MUX=y
+ CONFIG_SPL_LOAD_FIT=y
  CONFIG_DEFAULT_FDT_FILE="ucm-imx8m-mini.dtb"
 +CONFIG_BOARD_LATE_INIT=y
  CONFIG_ARCH_MISC_INIT=y
@@ -1262,8 +1264,8 @@ index f42597b5c7..1bdf48190e 100644
  CONFIG_CMD_EEPROM_LAYOUT=y
  CONFIG_CMD_MEMINFO=y
  CONFIG_CMD_MEMTEST=y
-+CONFIG_CMD_CLK=y
-+CONFIG_CMD_FUSE=y
++config_cmd_clk=y
++config_cmd_fuse=y
  CONFIG_CMD_GPIO=y
  CONFIG_CMD_I2C=y
 +CONFIG_CMD_MMC=y
@@ -1535,5 +1537,5 @@ index ad4e7997b1..75c6102f10 100644
  #if defined(CONFIG_ANDROID_SUPPORT)
  #include "ucm-imx8m-mini_android.h"
 -- 
-2.17.1
+2.11.0
 

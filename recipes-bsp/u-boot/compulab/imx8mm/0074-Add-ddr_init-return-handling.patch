@@ -1,7 +1,7 @@
-From 5de15446e8cc33508bd34fec4fe672f6367245b4 Mon Sep 17 00:00:00 2001
+From 254b62bbc0264d1042aeccb76b1b52ab1b46ac50 Mon Sep 17 00:00:00 2001
 From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 Date: Wed, 19 Aug 2020 18:45:55 +0300
-Subject: [PATCH 74/91] Add ddr_init return handling
+Subject: [PATCH 074/127] Add ddr_init return handling
 
 Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
 ---
@@ -9,10 +9,10 @@ Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/board/compulab/plat/imx8mm/ddr/ddr.c b/board/compulab/plat/imx8mm/ddr/ddr.c
-index b689a54df1..1bfab80336 100644
+index 4d774835ef..3912de6316 100644
 --- a/board/compulab/plat/imx8mm/ddr/ddr.c
 +++ b/board/compulab/plat/imx8mm/ddr/ddr.c
-@@ -151,7 +151,10 @@ void spl_dram_init(void)
+@@ -152,7 +152,10 @@ void spl_dram_init(void)
  	printf("DDRINFO(%s): %s %dG @ %d MHz\n", (ddr_found ? "D" : "?" ), lpddr4_array[i].name,
  			lpddr4_array[i].size, lpddr4_array[i].timing->fsp_table[0]);
  
@@ -25,5 +25,5 @@ index b689a54df1..1bfab80336 100644
  	ddr_info_mrr = lpddr4_get_mr();
  	if (ddr_info_mrr == 0xFFFFFFFF ) {
 -- 
-2.17.1
+2.11.0
 
